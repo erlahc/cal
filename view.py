@@ -24,7 +24,12 @@ class gui(Tk):
         age=StringVar()
         Entry(self,textvariable=age,width=15).grid(row=3, column=1)
 
-        Button(self,text='Ajouter',command=self.quit).grid(row=4, column=0, sticky=W)
+        sexe = StringVar()
+        sexe = 'homme'
+        bouton1 = Radiobutton(self, text='femme', variable=sexe, value='femme').grid(row=4, column=0)
+        bouton2 = Radiobutton(self, text='homme', variable=sexe, value='homme') .grid(row=4, column=1)
+
+        Button(self,text='Ajouter',command=self.quit).grid(row=5, column=0, sticky=W)
 
         self.tree=ttk.Treeview(self,columns=['Nom', 'Taille', 'Poids', 'Age', 'Sexe'], show='headings')
         self.tree.column('Nom', width = 70)
@@ -38,7 +43,7 @@ class gui(Tk):
         self.tree.column('Sexe', width = 50)
         self.tree.heading('Sexe', text='Sexe')
         self.tree.bind("<Double-1>", self.OnDoubleClick)
-        self.tree.grid(row=5, column=0, columnspan=2)
+        self.tree.grid(row=6, column=0, columnspan=2)
         list_db=model.getlist()
         controler.filltreeview(self.tree,list_db)
 
