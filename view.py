@@ -9,27 +9,27 @@ class gui(Tk):
         Tk.__init__(self)
         
         Label(self,text="Nom").grid(row=0, column=0, sticky=W)
-        nom=StringVar()
-        Entry(self,textvariable=nom,width=15).grid(row=0, column=1)
+        self.nom=StringVar()
+        Entry(self,textvariable=self.nom,width=15).grid(row=0, column=1)
         
         Label(self,text="Taille").grid(row=1, column=0, sticky=W)
-        taille=StringVar()
-        Entry(self,textvariable=taille,width=15).grid(row=1, column=1)
+        self.taille=StringVar()
+        Entry(self,textvariable=self.taille,width=15).grid(row=1, column=1)
                                                    
         Label(self,text="Poids").grid(row=2, column=0, sticky=W)
-        poids=StringVar()
-        Entry(self,textvariable=poids,width=15).grid(row=2, column=1)
+        self.poids=StringVar()
+        Entry(self,textvariable=self.poids,width=15).grid(row=2, column=1)
                                                    
         Label(self,text="Age").grid(row=3, column=0, sticky=W)
-        age=StringVar()
-        Entry(self,textvariable=age,width=15).grid(row=3, column=1)
+        self.age=StringVar()
+        Entry(self,textvariable=self.age,width=15).grid(row=3, column=1)
 
-        sexe = StringVar()
-        sexe = 'homme'
-        bouton1 = Radiobutton(self, text='femme', variable=sexe, value='femme').grid(row=4, column=0)
-        bouton2 = Radiobutton(self, text='homme', variable=sexe, value='homme') .grid(row=4, column=1)
+        self.sexe = StringVar()
+        self.sexe.set('femme')
+        bouton1 = Radiobutton(self, text='femme', variable=self.sexe, value='femme').grid(row=4, column=0)
+        bouton2 = Radiobutton(self, text='homme', variable=self.sexe, value='homme') .grid(row=4, column=1)
 
-        Button(self,text='Ajouter',command=self.quit).grid(row=5, column=0, sticky=W)
+        Button(self,text='Ajouter',command=self.OnValidationButton).grid(row=5, column=0, sticky=W)
 
         self.tree=ttk.Treeview(self,columns=['Nom', 'Taille', 'Poids', 'Age', 'Sexe'], show='headings')
         self.tree.column('Nom', width = 70)
@@ -50,3 +50,7 @@ class gui(Tk):
 
     def OnDoubleClick(self,event):
         controler.deleteitem(self.tree)
+
+    def OnValidationButton(self):
+        objet = model.People(0,self.nom.get(),self.taille.get(),self.poids.get(),self.age.get(),self.sexe.get())
+        controler.additem(self.tree,objet)

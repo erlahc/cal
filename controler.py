@@ -15,4 +15,4 @@ def deleteitem(treeobj):
 ##move to gui
 def additem(treeobj,i):
     treeobj.insert("",'end',text=str(i.iddb), values=(i.nom,i.taille,i.poids,i.age,i.sexe))
-    model.addtobase(i)
+    model.insertlist(i)

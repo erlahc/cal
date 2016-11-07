@@ -3,7 +3,7 @@ import math
 
 class People:
 
-    def __init__(self, iddb = 0, nom ='charles', taille = 1.80, poids = 72, age = 25, sexe = 'male'):
+    def __init__(self, iddb = 0, nom ='charles', taille = 1.80, poids = 72, age = 25, sexe = 'femme'):
         self.iddb = iddb
         self.nom = nom
         self.taille = taille
@@ -11,10 +11,15 @@ class People:
         self.age = age
         self.sexe = sexe
 
+    def __str__(self):
+        return "id({}) - ({}), nom({}) - ({}), taille({}) - ({}), poids({}) - ({}), age({}) - ({}), sexe({}) - ({})".format(
+            self.iddb, type(self.iddb),self.nom, type(self.nom),self.taille, type(self.taille),
+            self.poids, type(self.poids),self.age, type(self.age),self.sexe, type(self.sexe))
+
     def metabolismebase(person):
-        if person.sexe == 'male':
+        if person.sexe == 'homme':
             param = 259
-        elif person.sexe == 'female':
+        elif person.sexe == 'femme':
             param = 230
         return round(param*math.pow(person.poids,0.48)*math.pow(person.taille,0.5)*math.pow(person.age,-0.13),0)
 
