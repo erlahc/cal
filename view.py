@@ -30,7 +30,8 @@ class gui(Tk):
         bouton2 = Radiobutton(self, text='homme', variable=self.sexe, value='homme') .grid(row=4, column=1)
 
         Button(self,text='Ajouter',command=self.OnValidationButton).grid(row=5, column=0, sticky=W)
-
+        Button(self,text='Supprimer',command=self.OnDeleteButton).grid(row=5, column=1, sticky=E)
+        
         self.tree=ttk.Treeview(self,columns=['Nom', 'Taille', 'Poids', 'Age', 'Sexe'], show='headings')
         self.tree.column('Nom', width = 70)
         self.tree.heading('Nom', text='Nom')
@@ -42,13 +43,11 @@ class gui(Tk):
         self.tree.heading('Age', text='Age')
         self.tree.column('Sexe', width = 50)
         self.tree.heading('Sexe', text='Sexe')
-        self.tree.bind("<Double-1>", self.OnDoubleClick)
         self.tree.grid(row=6, column=0, columnspan=2)
         list_db=model.getlist()
         controler.filltreeview(self.tree,list_db)
 
-
-    def OnDoubleClick(self,event):
+    def OnDeleteButton(self):
         controler.deleteitem(self.tree)
 
     def OnValidationButton(self):

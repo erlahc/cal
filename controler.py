@@ -14,5 +14,14 @@ def deleteitem(treeobj):
 
 ##move to gui
 def additem(treeobj,i):
-    treeobj.insert("",'end',text=str(i.iddb), values=(i.nom,i.taille,i.poids,i.age,i.sexe))
-    model.insertlist(i)
+    try:
+        i.iddb=int(i.iddb)
+        i.nom=str(i.nom)
+        i.taille=float(i.taille)
+        i.poids=float(i.poids)
+        i.age=int(i.age)
+        i.sexe=str(i.sexe)
+        treeobj.insert("",'end',text=str(i.iddb), values=(i.nom,i.taille,i.poids,i.age,i.sexe))
+        model.insertlist(i)
+    except:
+        print('input error')
