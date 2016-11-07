@@ -30,6 +30,7 @@ class gui(Tk):
         bouton2 = Radiobutton(self, text='homme', variable=self.sexe, value='homme') .grid(row=4, column=1)
 
         Button(self,text='Ajouter',command=self.OnValidationButton).grid(row=5, column=0, sticky=W)
+        Button(self,text='Edit',command=self.OnEditButton).grid(row=5, column=3, sticky=E)
         Button(self,text='Supprimer',command=self.OnDeleteButton).grid(row=5, column=1, sticky=E)
         
         self.tree=ttk.Treeview(self,columns=['Nom', 'Taille', 'Poids', 'Age', 'Sexe','MB'], show='headings')
@@ -55,3 +56,7 @@ class gui(Tk):
     def OnValidationButton(self):
         objet = model.People(0,self.nom.get(),self.taille.get(),self.poids.get(),self.age.get(),self.sexe.get())
         controler.additem(self.tree,objet)
+
+    def OnEditButton(self):
+        objet = model.People(0,self.nom.get(),self.taille.get(),self.poids.get(),self.age.get(),self.sexe.get())
+        controler.edititem(self.tree,objet)

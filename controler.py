@@ -23,3 +23,19 @@ def additem(treeobj,i):
         model.insertlist(i)
     except:
         print('input error')
+
+def edititem(treeobj,i):
+    try :
+        i.iddb=int(i.iddb)
+        i.nom=str(i.nom)
+        i.taille=float(i.taille)
+        i.poids=float(i.poids)
+        i.age=int(i.age)
+        i.sexe=str(i.sexe)
+        item = treeobj.selection()[0]
+        item_id = treeobj.item(item,'text')
+        i.iddb=int(item_id)
+        treeobj.item(item,values=(i.nom,i.taille,i.poids,i.age,i.sexe,i.metabolismebase()))
+        model.editlist(i)
+    except :
+        print('input error')

@@ -36,13 +36,13 @@ def insertlist(objet):
     cur.execute("""
     CREATE TABLE IF NOT EXISTS users(
      id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
-     name TEXT,
+     nom TEXT,
      taille FLOAT,
      poids FLOAT,
      age INTEGER,
      sexe TEXT)""")
     cur.execute("""
-    INSERT INTO users(name, taille, poids, age, sexe)
+    INSERT INTO users(nom, taille, poids, age, sexe)
     VALUES(?, ?, ?, ?, ?)""", (objet.nom,objet.taille,objet.poids,objet.age,objet.sexe))
     conn.commit()
     conn.close()
@@ -65,3 +65,9 @@ def deletelist(iddb):
     conn.commit()
     conn.close()
 
+def editlist(objet):
+    conn =sqlite3.connect("db1.db") 
+    cur =conn.cursor()
+    cur.execute("""UPDATE users SET nom=?,taille=?,poids=?,age=?,sexe=? WHERE id=?""",(objet.nom,objet.taille,objet.poids,objet.age,objet.sexe,objet.iddb))
+    conn.commit()
+    conn.close()
