@@ -25,7 +25,7 @@ def droptable():
     conn.commit()
     conn.close()
 
-def addtobase(objet):
+def insertlist(objet):
     conn =sqlite3.connect("db1.db") 
     cur =conn.cursor()
     cur.execute("""
@@ -53,17 +53,10 @@ def getlist():
         list_db.append(people)
     return list_db
 
-def insertlist(objet):
-    conn =sqlite3.connect("db1.db") 
-    cur =conn.cursor()
-    cur.execute("""INSERT INTO users(name,taille,poids,age,sexe) VALUES (?,?,?,?,?)""",(objet.nom, objet.taille, objet.poids, objet.age, objet.sexe))
-    conn.commit
-    conn.close()
-
 def deletelist(iddb):
     conn =sqlite3.connect("db1.db") 
     cur =conn.cursor()
-    cur.execute("""DELETE FROM users WHERE id=?""",iddb)
-    conn.commit
+    cur.execute("""DELETE FROM users WHERE id=?""",(iddb,))
+    conn.commit()
     conn.close()
 
