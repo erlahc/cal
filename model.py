@@ -16,12 +16,12 @@ class People:
             self.iddb, type(self.iddb),self.nom, type(self.nom),self.taille, type(self.taille),
             self.poids, type(self.poids),self.age, type(self.age),self.sexe, type(self.sexe))
 
-    def metabolismebase(person):
-        if person.sexe == 'homme':
+    def metabolismebase(self):
+        if self.sexe == 'homme':
             param = 259
-        elif person.sexe == 'femme':
+        elif self.sexe == 'femme':
             param = 230
-        return round(param*math.pow(person.poids,0.48)*math.pow(person.taille,0.5)*math.pow(person.age,-0.13),0)
+        return round(param*math.pow(self.poids,0.48)*math.pow(self.taille,0.5)*math.pow(self.age,-0.13),0)
 
 def droptable():
     conn =sqlite3.connect("db1.db") 

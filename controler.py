@@ -2,9 +2,7 @@ import model
 
 def filltreeview(treeobj,list_db):
     for i in list_db:
-        treeobj.insert("",'end',text=str(i.iddb), values=(i.nom,i.taille,i.poids,i.age,i.sexe))
-
-
+        treeobj.insert("",'end',text=str(i.iddb), values=(i.nom,i.taille,i.poids,i.age,i.sexe,i.metabolismebase()))
 ##move to gui
 def deleteitem(treeobj):
     item = treeobj.selection()[0]
@@ -21,7 +19,7 @@ def additem(treeobj,i):
         i.poids=float(i.poids)
         i.age=int(i.age)
         i.sexe=str(i.sexe)
-        treeobj.insert("",'end',text=str(i.iddb), values=(i.nom,i.taille,i.poids,i.age,i.sexe))
+        treeobj.insert("",'end',text=str(i.iddb), values=(i.nom,i.taille,i.poids,i.age,i.sexe,i.metabolismebase()))
         model.insertlist(i)
     except:
         print('input error')
